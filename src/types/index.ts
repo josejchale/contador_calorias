@@ -10,3 +10,9 @@ export type FoodItem  = Category & {
 export type ExerciseItem = Category&{
     caloriesBurned: number;
 }
+
+export type opt ={
+    category: string,
+    foodItem: string,
+    exerciseItem: string
+}
