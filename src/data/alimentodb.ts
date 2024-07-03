@@ -4,7 +4,7 @@ export const foodItem  : FoodItem[] = [
 
     {
       id: 0,
-      name: "¿Qué comiste?",
+      name: "Selecciona una comida",
       calories: 0
     },
     {

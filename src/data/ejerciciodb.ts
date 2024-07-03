@@ -4,11 +4,11 @@ import type { ExerciseItem } from "../types"
 export const exerciseItems  : ExerciseItem[]= [
 
 
-  {
-    id: 0,
-    name: "¿Qué hiciste?",
-    caloriesBurned: 0
-  },
+    {
+      id: 0,
+      name: "Selecciona un ejercicio",
+      caloriesBurned: 0
+    },
     {
       id: 1,
       name: "Flexiones de Pecho",

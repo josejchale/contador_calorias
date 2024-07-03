@@ -1,5 +1,5 @@
 import { category } from '../data/categories';
-import { foodItem } from "../data/alimentodb"
+import { foodItem } from '../data/alimentodb';
 import { exerciseItems } from '../data/ejerciciodb';
 import {  useState  } from "react"
 
@@ -13,11 +13,21 @@ export default function Form() {
     category: 0,
     foodItem: 0,
     exerciseItems: 0
+    
   })
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setOpt({...opt,[e.target.id]: e.target.value}) //* Escribe el valor en determinado "input" manteniendo lo que hay en el state previamente
   }
+
+
+  const valid = () => {
+    const { foodItem, exerciseItems } = opt;
+    return !isNaN(foodItem) && foodItem > 0 || exerciseItems > 0;
+  }
+  
 
   
  
@@ -27,7 +37,7 @@ export default function Form() {
         className="space-y-5 bg-white shadow rounded-lg p-10">
 <div className="grid grid-cols-1 gap-3">
   
-<label htmlFor="category">Categoria:</label>
+<label htmlFor="category">¿Qué hiciste?</label>
     
     <select className="
     border border-slate-300 p-2 rounded-lg w-full bg-white"
@@ -45,9 +55,10 @@ export default function Form() {
 </div>
 
 
-<div className="grid grid-cols-1 gap-3">
+{opt.category==1&&(
 
-<label htmlFor="foodItem">Comida:</label>
+<div className="grid grid-cols-1 gap-3">
+<label htmlFor="foodItem">¿Qué comiste?</label>
 <select className="
     border border-slate-300 p-2 rounded-lg w-full bg-white"
     id="foodItem"
@@ -62,12 +73,14 @@ export default function Form() {
     >{foodItem.name}
     </option>))}
     </select>
-
 </div>
 
+)}
+
+{opt.category==2&&(
 
 <div className="grid grid-cols-1 gap-3">
-<label htmlFor="exerciseItems">Ejercicio:</label>
+<label htmlFor="exerciseItems">¿Qué ejercicio realizaste?</label>
 <select className="
     border border-slate-300 p-2 rounded-lg w-full bg-white"
     id="exerciseItems"
@@ -83,15 +96,20 @@ export default function Form() {
     </select>
 </div>
 
-<div>
-  <p>Calorias quemadas: {exerciseItems.find(item => item.id === opt.exerciseItems)?.caloriesBurned}</p>
-</div>
+)
+}
+
+
+
+
+
 
 
 <input
 type="submit"
-className="bg-gray-700 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer rounded-lg"
-value={"Guardar"}
+className="bg-gray-700 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer rounded-lg  disabled:opacity-10"
+value={opt.category===1?'Guardar comida': 'Guardar ejercicio'}
+disabled={!valid()}
 />
 
       </form>
