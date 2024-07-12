@@ -11,8 +11,8 @@ export type ExerciseItem = Category&{
     caloriesBurned: number;
 }
 
-export type opt ={
-    category: string,
-    foodItem: string,
-    exerciseItem: string
+export type options ={
+    category: number,
+    foodItem: number,
+    exerciseItems: number
 }

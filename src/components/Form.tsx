@@ -2,6 +2,7 @@ import { category } from '../data/categories';
 import { foodItem } from '../data/alimentodb';
 import { exerciseItems } from '../data/ejerciciodb';
 import {  useState  } from "react"
+import { options } from '../types';
 
 
 
@@ -9,7 +10,7 @@ import {  useState  } from "react"
 
 export default function Form() {
 
-  const [opt, setOpt] = useState({
+  const [opt, setOpt] = useState<options>({
     category: 0,
     foodItem: 0,
     exerciseItems: 0
@@ -27,14 +28,18 @@ export default function Form() {
     const { foodItem, exerciseItems } = opt;
     return !isNaN(foodItem) && foodItem > 0 || exerciseItems > 0;
   }
-  
 
-  
+  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {(
+    e.preventDefault()
+    
+  )}
  
   return (
     
         <form 
-        className="space-y-5 bg-white shadow rounded-lg p-10">
+        className="space-y-5 bg-white shadow rounded-lg p-10"
+        onSubmit={handleSubmit}
+        >
 <div className="grid grid-cols-1 gap-3">
   
 <label htmlFor="category">¿Qué hiciste?</label>
@@ -53,7 +58,6 @@ export default function Form() {
     </option>))}
     </select>
 </div>
-
 
 {opt.category==1&&(
 
@@ -78,7 +82,6 @@ export default function Form() {
 )}
 
 {opt.category==2&&(
-
 <div className="grid grid-cols-1 gap-3">
 <label htmlFor="exerciseItems">¿Qué ejercicio realizaste?</label>
 <select className="
@@ -98,12 +101,6 @@ export default function Form() {
 
 )
 }
-
-
-
-
-
-
 
 <input
 type="submit"
