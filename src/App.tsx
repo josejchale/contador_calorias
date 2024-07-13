@@ -1,11 +1,13 @@
-import {  useReducer } from "react"
+import { useReducer } from "react"
 import Form from "./components/Form"
-import {  activityReducer, initialState } from "./reducers/activity-reducer"
+import { activityReducer,initialState } from "./reducers/activity-reducer"
+import AcitivityList from "./components/AcitivityList"
+
 
 
 function App() {
- 
-  const [state, dispatch] = useReducer(activityReducer, initialState)
+
+const [state, dispatch] = useReducer(activityReducer,initialState)
 
   return (
     <>
@@ -23,6 +25,11 @@ function App() {
       </div>
     </section>
 
+    <section className="p-10 mx-auto max-w-4xl">
+    
+{state && <AcitivityList activities={state.activities} />}
+    
+    </section>
 
     </>
   )

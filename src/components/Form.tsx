@@ -1,21 +1,28 @@
+import {v4 as uuidv4} from 'uuid'
+
 import { category } from '../data/categories';
 import { foodItem } from '../data/alimentodb';
 import { exerciseItems } from '../data/ejerciciodb';
-import {  useState  } from "react"
-import { options } from '../types';
+import {  Dispatch, useState  } from "react"
+import { Options } from '../types';
+import { ActivityAction } from '../reducers/activity-reducer';
 
 
 
+type FormProps = {
+  dispatch : Dispatch<ActivityAction>
+}
 
-
-export default function Form() {
-
-  const [opt, setOpt] = useState<options>({
+const initial:Options={
+    id: uuidv4(),
     category: 0,
     foodItem: 0,
     exerciseItems: 0
-    
-  })
+}
+
+export default function Form({dispatch}:FormProps) {
+
+  const [opt, setOpt] = useState<Options>(initial)
 
 
 
@@ -29,10 +36,13 @@ export default function Form() {
     return !isNaN(foodItem) && foodItem > 0 || exerciseItems > 0;
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {(
+  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault()
     
-  )}
+    dispatch({type: 'save-activity' , payload: {newActivity:opt}})
+
+    setOpt({...initial, id:uuidv4()})
+  }
  
   return (
     

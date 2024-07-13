@@ -1,14 +1,14 @@
 
-import { options } from '../types';
+import { Options } from '../types';
 
 
 export type ActivityAction = 
 
-{ type:'save-activity', payload:{newActivity:options}}
+{ type:'save-activity', payload:{newActivity:Options}}
 
 
 type activityState={
-activities : options[]
+activities : Options[]
 }
 
 
@@ -27,8 +27,12 @@ action: ActivityAction
 
 ) =>{
     if(action.type==='save-activity'){
-        console.log('desde el type save-activity');
-        //* Este codigo maneja la logica en el state
-        console.log('desde el type de save-activity');
+        
+        return{
+            ...state,
+            activities: [...state.activities, action.payload.newActivity]
+        }
+        
+        
     }
 }
