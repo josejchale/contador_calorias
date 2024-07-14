@@ -1,10 +1,15 @@
 import { Options } from "../types"
 
 
+
 type ActivityListProps = {
     activities: Options[]
 }
 export default function AcitivityList({ activities }: ActivityListProps) {
+
+
+    
+
     return (
         <>
             <h2 className='text-4xl font-bold text-slate-400 text-center'> Comida y Actividades </h2>
