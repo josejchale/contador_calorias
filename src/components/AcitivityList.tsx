@@ -8,7 +8,6 @@ type ActivityListProps = {
 export default function AcitivityList({ activities }: ActivityListProps) {
 
 
-    
 
     return (
         <>
