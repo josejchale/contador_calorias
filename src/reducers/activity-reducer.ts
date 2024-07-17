@@ -9,13 +9,14 @@ export type ActivityAction =
 
 type activityState={
 activities : Options[]
+
 }
 
 
 
 export const initialState : activityState = {
 
-activities: []
+activities: [],
 
 }
 

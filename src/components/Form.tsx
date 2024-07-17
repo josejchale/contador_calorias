@@ -1,6 +1,5 @@
 import {v4 as uuidv4} from 'uuid'
-
-import { category } from '../data/categories';
+import { categories } from '../data/categories';
 import { foodItem } from '../data/alimentodb';
 import { exerciseItems } from '../data/ejerciciodb';
 import {  Dispatch, useState  } from "react"
@@ -15,7 +14,7 @@ type FormProps = {
 
 const initial:Options={
     id: uuidv4(),
-    category: 0,
+    categories: 0,
     foodItem: 0,
     exerciseItems: 0
 }
@@ -52,24 +51,24 @@ export default function Form({dispatch}:FormProps) {
         >
 <div className="grid grid-cols-1 gap-3">
   
-<label htmlFor="category">¿Qué hiciste?</label>
+<label htmlFor="categories">¿Qué hiciste?</label>
     
     <select className="
     border border-slate-300 p-2 rounded-lg w-full bg-white"
-    id="category"
-    value={opt.category}
+    id="categories"
+    value={opt.categories}
     onChange={handleChange}
     >
 
-    {category.map(category =>(<option
-    key={category.id}
-    value={category.id}
-    >{category.name}
+    {categories.map(categories =>(<option
+    key={categories.id}
+    value={categories.id}
+    >{categories.name}
     </option>))}
     </select>
 </div>
 
-{opt.category==1&&(
+{opt.categories==1&&(
 
 <div className="grid grid-cols-1 gap-3">
 <label htmlFor="foodItem">¿Qué comiste?</label>
@@ -91,7 +90,7 @@ export default function Form({dispatch}:FormProps) {
 
 )}
 
-{opt.category==2&&(
+{opt.categories==2&&(
 <div className="grid grid-cols-1 gap-3">
 <label htmlFor="exerciseItems">¿Qué ejercicio realizaste?</label>
 <select className="
@@ -115,7 +114,7 @@ export default function Form({dispatch}:FormProps) {
 <input
 type="submit"
 className="bg-gray-700 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer rounded-lg  disabled:opacity-10"
-value={opt.category===1?'Guardar comida': 'Guardar ejercicio'}
+value={opt.categories===1?'Guardar comida': 'Guardar ejercicio'}
 disabled={!valid()}
 />
 
