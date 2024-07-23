@@ -9,7 +9,7 @@ export type ActivityAction =
 
 type activityState={
 activities : Options[]
-
+activeID : Options['id']
 }
 
 
@@ -17,6 +17,7 @@ activities : Options[]
 export const initialState : activityState = {
 
 activities: [],
+activeID : ''
 
 }
 

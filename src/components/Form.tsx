@@ -8,6 +8,7 @@ import { ActivityAction } from '../reducers/activity-reducer';
 
 
 
+
 type FormProps = {
   dispatch : Dispatch<ActivityAction>
 }
@@ -31,8 +32,8 @@ export default function Form({dispatch}:FormProps) {
 
 
   const valid = () => {
-    const { foodItem, exerciseItems } = opt;
-    return !isNaN(foodItem) && foodItem > 0 || exerciseItems > 0;
+    const { categories,foodItem, exerciseItems } = opt;
+    return !isNaN(foodItem) && categories > 0 && foodItem > 0 || exerciseItems > 0;
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
@@ -113,8 +114,8 @@ export default function Form({dispatch}:FormProps) {
 
 <input
 type="submit"
-className="bg-gray-700 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer rounded-lg  disabled:opacity-10"
-value={opt.categories===1?'Guardar comida': 'Guardar ejercicio'}
+className="bg-gray-700 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer rounded-lg  disabled:opacity-0"
+value={opt.categories==1?'Guardar comida': 'Guardar Ejercicio'}
 disabled={!valid()}
 />
 
