@@ -4,12 +4,13 @@ import { Options } from '../types';
 
 export type ActivityAction = 
 
-{ type:'save-activity', payload:{newActivity:Options}}
+{ type:'save-activity', payload:{newActivity:Options}} |
+{type: 'set-activiteID', payload:{id:Options['id']}}
 
 
-type activityState={
+ export type activityState={
 activities : Options[]
-activeID : Options['id']
+activeId : Options['id']
 }
 
 
@@ -17,7 +18,7 @@ activeID : Options['id']
 export const initialState : activityState = {
 
 activities: [],
-activeID : ''
+activeId : ''
 
 }
 
@@ -36,5 +37,14 @@ action: ActivityAction
         }
         
         
+    }
+
+    if (action.type==='set-activiteID'){
+
+        return {
+            ...state,
+            activeID: action.payload.id
+        }
+
     }
 }

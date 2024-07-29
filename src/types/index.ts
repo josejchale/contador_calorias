@@ -13,7 +13,7 @@ export type ExerciseItem = Category&{
 
 export type Options ={
     
-    id: string,
+    id: string, 
     categories: number,
     foodItem: number,
     exerciseItems: number

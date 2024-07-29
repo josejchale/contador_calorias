@@ -2,15 +2,16 @@ import {v4 as uuidv4} from 'uuid'
 import { categories } from '../data/categories';
 import { foodItem } from '../data/alimentodb';
 import { exerciseItems } from '../data/ejerciciodb';
-import {  Dispatch, useState  } from "react"
+import {  Dispatch, useEffect, useState  } from "react"
 import { Options } from '../types';
-import { ActivityAction } from '../reducers/activity-reducer';
+import { ActivityAction, activityState } from '../reducers/activity-reducer';
 
 
 
 
 type FormProps = {
-  dispatch : Dispatch<ActivityAction>
+  dispatch : Dispatch<ActivityAction>,
+  state : activityState
 }
 
 const initial:Options={
@@ -20,11 +21,16 @@ const initial:Options={
     exerciseItems: 0
 }
 
-export default function Form({dispatch}:FormProps) {
+export default function Form({dispatch,state}:FormProps) {
 
   const [opt, setOpt] = useState<Options>(initial)
 
-
+  useEffect(()=>{
+    if(state.activeId){
+      console.log('Ya hay algo en el activeID')
+    }
+  }
+  ,[state.activeId])
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setOpt({...opt,[e.target.id]: e.target.value}) //* Escribe el valor en determinado "input" manteniendo lo que hay en el state previamente
@@ -36,6 +42,7 @@ export default function Form({dispatch}:FormProps) {
     return !isNaN(foodItem) && categories > 0 && foodItem > 0 || exerciseItems > 0;
   }
 
+  
   const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault()
     
@@ -53,7 +60,6 @@ export default function Form({dispatch}:FormProps) {
 <div className="grid grid-cols-1 gap-3">
   
 <label htmlFor="categories">¿Qué hiciste?</label>
-    
     <select className="
     border border-slate-300 p-2 rounded-lg w-full bg-white"
     id="categories"

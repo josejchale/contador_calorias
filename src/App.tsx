@@ -1,6 +1,6 @@
 import { useReducer } from "react"
 import Form from "./components/Form"
-import { activityReducer,initialState } from "./reducers/activity-reducer"
+import { activityReducer, activityState, initialState } from './reducers/activity-reducer';
 import AcitivityList from "./components/AcitivityList"
 
 function App() {
@@ -18,14 +18,18 @@ const [state, dispatch] = useReducer(activityReducer,initialState)
     <section className="bg-lime-500 py-20 px-5">
       <div className="max-w-4xl mx-auto">
       <Form
-      dispatch={dispatch}
-      />
+  dispatch={dispatch}
+  state={state as activityState}
+/>
       </div>
     </section>
 
     <section className="p-10 mx-auto max-w-4xl">
     
-{state && <AcitivityList activities={state.activities} />}
+{state && <AcitivityList
+activities={state.activities}
+dispatch={dispatch}
+/>}
     
     </section>
 
